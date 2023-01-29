@@ -31,6 +31,10 @@ section {
   border-radius: 8px;
   background-color: white;
 }
+
+.bg-primary-color {
+  background-color: rgb(15,82,186);
+}
 `;
 
 export default GlobalStyles;
