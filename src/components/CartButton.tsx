@@ -10,6 +10,7 @@ const CartIconSection = styled.button`
   align-items: center;
   padding: 5px;
   gap: 8px;
+  border: none;
   border-radius: 8px;
 `;
 
