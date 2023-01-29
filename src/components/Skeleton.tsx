@@ -9,9 +9,9 @@ const loading = keyframes`
   }
 `;
 
-const StyledSkeleton = styled.div`
-  width: 200px;
-  height: 200px;
+const Skeleton = styled.div`
+  width: 251px;
+  height: 328px;
   border-radius: 4px;
   box-shadow: 1px 1px 10px rgba(0,0,0,2);
   position: relative;
@@ -28,16 +28,16 @@ const StyledSkeleton = styled.div`
     animation: ${loading} 1000ms ease-in-out infinite;
   }
 
-  @media screen and (min-width: 766px) {
+  @media screen and (min-width: 920px) {
     margin-top: 100px;
   }
 `;
 
 const SkeletonContainer = styled.div`
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 920px) {
     display: flex;
     height: 100vh;
-    margin: 0 auto;
+    margin: 40px auto;
     width: 90%;
   }
 `;
@@ -45,9 +45,9 @@ const SkeletonContainer = styled.div`
 export default function SkeletonLoading() {
   return (
     <SkeletonContainer>
-      <StyledSkeleton />
-      <StyledSkeleton />
-      <StyledSkeleton />
+      <Skeleton />
+      <Skeleton />
+      <Skeleton />
     </SkeletonContainer>
   )
 }
