@@ -13,7 +13,7 @@ const CartIconSection = styled.button`
   border-radius: 8px;
 `;
 
-export default function Cart() {
+export default function CartButton() {
   return (
     <CartIconSection>
       <Image src={cartIcon} alt="cart icon" width={15}></Image>

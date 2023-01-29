@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Cart from "./Cart";
+import CartButton from "./CartButton";
 
 const HeaderContainer = styled.header`
   display: flex;
@@ -49,7 +49,7 @@ export default function Header() {
           <P>Sistemas</P>
         </Div>
 
-        <Cart />
+        <CartButton />
 
       </Article>
     </HeaderContainer>
