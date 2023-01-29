@@ -3,7 +3,6 @@ import CartButton from "./CartButton";
 
 const HeaderContainer = styled.header`
   display: flex;
-  background-color: rgb(15,82,186);
   color: white;
   width: screen;
   height: 55px;
@@ -41,7 +40,7 @@ const Title = styled.h1`
 
 export default function Header() {
   return (
-    <HeaderContainer>
+    <HeaderContainer className="bg-primary-color">
 
       <Article>
         <Div>
