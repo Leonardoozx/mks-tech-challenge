@@ -1,25 +1,37 @@
-import Header from "@/components/Header"
-import HeadPageInfo from "@/components/HeadPageInfo"
 import SkeletonLoading from "@/components/Skeleton"
-import { ItemsPayload } from "@/interfaces/items"
+import { ItemsPayload } from "@/interfaces/itemsInterfaces"
 import { useAppDispatch, useAppSelector } from "@/store/hooks"
 import { fetchItems } from "@/store/reducers/stockItemsReducer"
 import { useEffect, useState } from "react"
 import { selectItems } from "@/store/reducers/stockItemsReducer"
 import ItemsCard from "@/components/ItemsCard"
 import styled from "styled-components"
+import { selectCartItems } from "@/store/reducers/cartItemsReducer"
+import CartSideBar from "@/components/CartSideBar"
 
 const ItemsContainer = styled.div`
   width: 90%;
   margin: 100px auto;
   border-radius: 8px;
   margin: 40px auto 0 auto;
+  max-width: 1200px;
+  margin-bottom: 80px;
+
+  @media screen and (min-width: 920px) {
+      display: flex;
+      flex-wrap: wrap;
+  }
 `;
 
 export default function Home() {
   const dispatch = useAppDispatch();
   const [ isLoading, setIsLoading ] = useState(true);
-  const items = useAppSelector(selectItems);
+  
+  // stockItemsReducer
+  const { items } = useAppSelector(selectItems);
+
+  // cartItemsReducer
+  const { isOpen } = useAppSelector(selectCartItems)
 
   useEffect(() => {
     const payload: ItemsPayload = {
@@ -29,8 +41,8 @@ export default function Home() {
       orderBy: 'DESC'
     };
     dispatch(fetchItems({ ...payload }))
-    if (items.stockItems) return setIsLoading(false)
-  }, [ dispatch, items ])
+    if (items) return setIsLoading(false)
+  }, [])
 
   return (
     <div>
@@ -40,11 +52,14 @@ export default function Home() {
         ) :
           (
             <ItemsContainer>
-              {items?.stockItems.map((item) => (
+              {items?.map((item) => (
                 <ItemsCard key={item.id} item={item} />
               ))}
             </ItemsContainer>
           )
+      }
+      {
+        isOpen && <CartSideBar />
       }
     </div>
   )
