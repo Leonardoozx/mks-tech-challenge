@@ -1,9 +1,12 @@
+import { useAppDispatch } from "@/store/hooks";
+import { openCart, selectCartItems } from "@/store/reducers/cartItemsReducer";
 import Image from "next/image";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import cartIcon from '../images/cartIcon.svg';
 
-const CartIconSection = styled.button`
+const CartIconButtonContainer = styled.button`
   display: flex;
   width: 52px;
   height: 26px;
@@ -15,10 +18,14 @@ const CartIconSection = styled.button`
 `;
 
 export default function CartButton() {
+  const dispatch = useAppDispatch();
+
+  const { itemsInTheCart } = useSelector(selectCartItems);
+
   return (
-    <CartIconSection>
+    <CartIconButtonContainer onClick={() => dispatch(openCart())}>
       <Image src={cartIcon} alt="cart icon" width={15}></Image>
-      <span style={{ color: 'black' }}>0</span>
-    </CartIconSection>
+      <span style={{ color: 'black' }}>{itemsInTheCart.length}</span>
+    </CartIconButtonContainer>
   )
 }
