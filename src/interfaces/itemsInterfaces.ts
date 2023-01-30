@@ -14,11 +14,11 @@ export interface Items {
   price: string;
   createdAt: string;
   updatedAt: string;
+  quantity?: number;
 }
 
 export interface ItemsInitialState {
-  stockItems: Items[];
-  itemsInTheCart: Items[];
+  items: Items[];
 }
 
 export interface ItemsApiResponse {
