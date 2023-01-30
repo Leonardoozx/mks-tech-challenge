@@ -25,7 +25,7 @@ const ItemsCardContainer = styled.div`
     height: 50%;
     
     @media screen and (min-width: 920px) {
-      width: 25%;
+      width: 20%;
       margin: 0 15px ;
     }
   }
