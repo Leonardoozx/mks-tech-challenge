@@ -10,6 +10,13 @@ const nextConfig = {
         port: '',
         pathname: '/products/**.webp',
       },
+      // https://imgur.com/{imageId}
+      {
+        protocol: 'https',
+        hostname: 'imgur.com',
+        port: '',
+        pathname: '/*.png'
+      }
     ],
   },
   compiler: {
