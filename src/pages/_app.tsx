@@ -4,6 +4,7 @@ import { store } from '@/store';
 import GlobalStyles from '@/GlobalStyles';
 import Head from 'next/head';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -18,6 +19,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Provider store={store}>
         <Header />
         <Component {...pageProps} />
+        <Footer />
       </Provider>
     </>
   );
