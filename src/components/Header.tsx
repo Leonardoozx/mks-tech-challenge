@@ -36,8 +36,6 @@ const Title = styled.h1`
   font-size: 32px;
 `;
 
-
-
 export default function Header() {
   return (
     <HeaderContainer className="bg-primary-color">
