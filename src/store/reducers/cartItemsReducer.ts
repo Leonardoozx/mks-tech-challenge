@@ -6,6 +6,7 @@ import { Items } from '@/interfaces/itemsInterfaces';
 const initialState: CartSideBar = {
   isOpen: false,
   itemsInTheCart: [],
+  totalPrice: 0,
 };
 
 export const cartItemsSlice = createSlice({
@@ -13,12 +14,16 @@ export const cartItemsSlice = createSlice({
   initialState,
   reducers: {
     putItemsInTheCart(state, { payload }: PayloadAction<Items>) {
-      const itemIndex = state.itemsInTheCart.findIndex((item) => item.id === payload.id)
+      const itemIndex = state.itemsInTheCart.findIndex(
+        (item) => item.id === payload.id
+      );
       if (state.itemsInTheCart.some((item) => item.id === payload.id)) {
-        state.itemsInTheCart[itemIndex].quantity! += 1
+        state.itemsInTheCart[itemIndex].quantity! += 1;
+        state.totalPrice += Number(payload.price);
         return;
       }
       state.itemsInTheCart.push(payload);
+      state.totalPrice += Number(payload.price);
     },
     removeItemsFromCart(state, { payload }: PayloadAction<number>) {
       const filteredItems = state.itemsInTheCart.filter(
@@ -37,6 +42,7 @@ export const cartItemsSlice = createSlice({
         (item) => item.id === payload
       );
       state.itemsInTheCart[itemIndex].quantity! += 1;
+      state.totalPrice += Number(state.itemsInTheCart[itemIndex].price);
     },
     minusItemQuantity(state, { payload }: PayloadAction<number>) {
       const itemIndex = state.itemsInTheCart.findIndex(
@@ -50,6 +56,7 @@ export const cartItemsSlice = createSlice({
         return;
       }
       state.itemsInTheCart[itemIndex].quantity! -= 1!;
+      state.totalPrice -= Number(state.itemsInTheCart[itemIndex].price);
     },
   },
 });

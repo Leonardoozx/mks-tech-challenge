@@ -91,7 +91,7 @@ const ItemsContainer = styled.div`
 `;
 
 export default function CartSideBar() {
-  const { itemsInTheCart } = useAppSelector(selectCartItems);
+  const { itemsInTheCart, totalPrice } = useAppSelector(selectCartItems);
   const dispatch = useAppDispatch();
 
   const onFormSubmit = () => {
@@ -114,7 +114,7 @@ export default function CartSideBar() {
 
       <TotalPrice>
         <p>Total: </p>
-        <p>R${itemsInTheCart?.reduce((acc, cur) => Number(acc) + Number(cur.price), 0)}</p>
+        <p>R${itemsInTheCart.length ? totalPrice : 0}</p>
       </TotalPrice>
 
       <BuyButton onClick={onFormSubmit} type="button">FINALIZAR COMPRA</BuyButton>

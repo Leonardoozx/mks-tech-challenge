@@ -2,5 +2,6 @@ import { Items } from "./itemsInterfaces";
 
 export interface CartSideBar {
   isOpen: Boolean;
-  itemsInTheCart: Items[]
+  itemsInTheCart: Items[];
+  totalPrice: number;
 }
