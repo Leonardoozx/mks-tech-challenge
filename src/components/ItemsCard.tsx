@@ -3,6 +3,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import { useAppDispatch } from "@/store/hooks";
 import { putItemsInTheCart } from "@/store/reducers/cartItemsReducer";
+import { useEffect, useState } from "react";
 
 const StockItemsContainer = styled.div`
   width: 251px;
@@ -59,6 +60,7 @@ const ItemDescription = styled.p`
 `;
 
 const BuyButton = styled.button`
+  transition: 1s;
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -66,6 +68,17 @@ const BuyButton = styled.button`
   color: white;
   border: none;
   border-radius: 0px 0px 8px 8px;
+
+  .added-to-cart {
+    transition: 1s;
+    background-color: #0d3e86;
+    width: 100%;
+    height: 100%;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 const ImageContainer = styled.div`
@@ -104,29 +117,57 @@ export interface ItemsCardInterface {
 export default function ItemsCard({ item }: ItemsCardInterface) {
   const dispatch = useAppDispatch();
 
+  const [ isInTheCart, setIsInTheCart ] = useState(false);
+
+  useEffect(() => {
+    if (isInTheCart === true) {
+      // setTimeout(() => setIsInTheCart(false), 2500);
+      setTimeout(() => {
+        setIsInTheCart(false)
+      }, 2500);
+    }
+  }, [ isInTheCart ])
+
+  const onBuyButtonClick = () => {
+    dispatch(putItemsInTheCart(item))
+    setIsInTheCart(true)
+    console.log(isInTheCart)
+  }
+
   return (
     <>
-      
-     <StockItemsContainer>
-      <ImageContainer>
-        <Image width={1000} height={1000} src={item.photo} alt="item pic" />
-      </ImageContainer>
 
-      <ItemNameAndPriceContainer>
-        <ItemName>{item.name}</ItemName>
-        <ItemPrice>R${Number(item.price).toFixed(0)}</ItemPrice>
-      </ItemNameAndPriceContainer>
+      <StockItemsContainer>
+        <ImageContainer>
+          <Image width={1000} height={1000} src={item.photo} alt="item pic" />
+        </ImageContainer>
 
-      <ItemDescription>{item.description}</ItemDescription>
+        <ItemNameAndPriceContainer>
+          <ItemName>{item.name}</ItemName>
+          <ItemPrice>R${Number(item.price).toFixed(0)}</ItemPrice>
+        </ItemNameAndPriceContainer>
 
-      <BuyButton onClick={() =>dispatch(putItemsInTheCart(item))} className="bg-primary-color" type="button">
-        {/* buyIcon = https://imgur.com/Rgq69UF.png */}
-        <BuyIconContainer>
-          <Image width={50} height={50} src='https://imgur.com/Rgq69UF.png' alt='buy icon' />
-          <p>COMPRAR</p>
-        </BuyIconContainer>
-      </BuyButton>
-    </StockItemsContainer>
+        <ItemDescription>{item.description}</ItemDescription>
+
+        <BuyButton
+          onClick={onBuyButtonClick}
+          className={isInTheCart ? "added-to-cart" : "bg-primary-color"}
+          type="button"
+        >
+          {/* buyIcon = https://imgur.com/Rgq69UF.png */}
+          <BuyIconContainer>
+            {isInTheCart ?
+              <p className="added-to-cart">Item adicionado ao carrinho!</p>
+              : (
+                <>
+                  <Image width={50} height={50} src="https://imgur.com/Rgq69UF.png" alt="buy icon" />
+                  <p>COMPRAR</p>
+                </>
+              )
+            }
+          </BuyIconContainer>
+        </BuyButton>
+      </StockItemsContainer>
     </>
   )
 }

@@ -26,6 +26,12 @@ export const cartItemsSlice = createSlice({
       state.totalPrice += Number(payload.price);
     },
     removeItemsFromCart(state, { payload }: PayloadAction<number>) {
+      const itemIndex = state.itemsInTheCart.findIndex(
+        (item) => item.id === payload
+      );
+      const item = state.itemsInTheCart[itemIndex];
+      const totalPrice = Number(item.price) * item.quantity!;
+      state.totalPrice -= totalPrice;
       const filteredItems = state.itemsInTheCart.filter(
         ({ id }) => id !== payload
       );
@@ -52,6 +58,7 @@ export const cartItemsSlice = createSlice({
         const filteredItems = state.itemsInTheCart.filter(
           ({ id }) => id !== payload
         );
+        state.totalPrice -= Number(state.itemsInTheCart[itemIndex].price);
         state.itemsInTheCart = filteredItems;
         return;
       }
