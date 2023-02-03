@@ -17,6 +17,5 @@
 
 ### Curiosidade:
 
-- De acordo com o [WakaTime](https://wakatime.com) eu passei mais de 14hrs no desenvolvimento deste projeto!
+- De acordo com o [WakaTime](https://wakatime.com) este  [![wakatime](https://wakatime.com/badge/user/ed96392e-eab2-4b0e-9bea-f977f905ab17/project/5e2d74e6-4596-4f8f-b998-c3a14981dd10.svg)](https://wakatime.com/badge/user/ed96392e-eab2-4b0e-9bea-f977f905ab17/project/5e2d74e6-4596-4f8f-b998-c3a14981dd10)  foi o tempo que gastei no desenvolvimento do projeto! :)
 
-- [![wakatime](https://wakatime.com/badge/user/ed96392e-eab2-4b0e-9bea-f977f905ab17/project/5e2d74e6-4596-4f8f-b998-c3a14981dd10.svg)](https://wakatime.com/badge/user/ed96392e-eab2-4b0e-9bea-f977f905ab17/project/5e2d74e6-4596-4f8f-b998-c3a14981dd10)
